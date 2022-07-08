@@ -1,0 +1,10 @@
+name: "Portfolio"
+output_dir: "docs"
+exclude: ["docs"]
+navbar:
+  title: "Portfolio"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
