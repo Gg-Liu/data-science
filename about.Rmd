@@ -1,5 +1,7 @@
 ---
-title: "About This Website"
+title: "My Website"
 ---
 
-More about this website.
+Hello!
+
+This is a website for my portfolio. I will be adding more projects here soon, so don't forget to check it out at a later date!
