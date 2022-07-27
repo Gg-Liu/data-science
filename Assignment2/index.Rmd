@@ -1,0 +1,87 @@
+---
+title: "Assignment 2"
+subtitle: "STATS 220 Semester One 2022"
+author: "George Liu"
+date: "06/04/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+csv_file <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vSc1fsvQy5bMjRO9T8-ZjrvHz8PXYkqSnVezKhAxfO4w6kNUBNvXAvZiQ6PAEYB4HxjV31KJ1SgB0ti/pub?output=csv"
+music_data <- read_csv(csv_file)
+```
+
+## Introduction
+
+For this report, I have collected responses from `r nrow(music_data)` responses from family and friends about their music listening preferences and habits, specifically their preferred genres and gear. I have chosen these subjects because I thought it would be applicable to a wider selection of people, and also the fact that I was personally interested in the responses to these questions.
+
+## Links to form and data
+
+- [Link to the forms](https://forms.gle/9ixNyMCoxtpB6M639)
+- [Link to published csv file](https://docs.google.com/spreadsheets/d/e/2PACX-1vSc1fsvQy5bMjRO9T8-ZjrvHz8PXYkqSnVezKhAxfO4w6kNUBNvXAvZiQ6PAEYB4HxjV31KJ1SgB0ti/pub?output=csv)
+
+## Analytics
+
+```{r}
+
+#Initializing the data frame
+music_data <- music_data %>%
+  rename(hours_listened = 2,
+         preferred_genres = 3,
+         classical_pref_score = 4,
+         extra_gear = 5,
+         native_music_pref = 6,
+         likes_jazz = 7) %>%
+  select(hours_listened, preferred_genres, classical_pref_score, extra_gear, native_music_pref, likes_jazz)  
+
+#Output average number of hours listened
+print("Average number of hours respondents listen to music:")
+print(music_data$hours_listened %>% sum()/length(music_data$hours_listened))
+
+#Preparing bar charts
+music_data_genre_sep <- music_data %>%
+  separate_rows(preferred_genres, sep = ", ")
+
+music_data_gear_sep <- music_data %>%
+  separate_rows(extra_gear, sep = ", ")
+
+#Bar charts
+
+ggplot(data = music_data_genre_sep) +
+  geom_bar(aes(x = preferred_genres), fill = "#bf0080") +
+  labs(title = "Genre Preferences",
+       x = "Genres",
+       y = "Number Preferred")
+
+ggplot(data = music_data_gear_sep) +
+  geom_bar(aes(x = extra_gear), fill = "#b06F80") +
+  labs(title = "Genre Preferences",
+       x = "Gear",
+       y = "Number Used")
+
+ggplot(data = music_data) +
+  geom_bar(aes(y = likes_jazz), fill = "#c209F2") +
+  labs(title = "Jazz Preference",
+       y = "Jazz?",
+       x = "Responses")
+
+#First 5 responses
+music_data %>% slice(1:5) %>% 
+  knitr::kable()
+
+#From this data we know that pop music seems to be the most popular among respondents (hence "pop").
+#Very few of the respondents use a dedicated Amp/DAC for their music, suggesting that people generally listen to music more casually.
+#Most respondents either like jazz or respond positively to the "Ya like jazz?" meme.
+
+```
+
+## Learning reflection
+In this module, _"Creating dynamic reporting systems"_, I have learned techniques that will help present given findings from data. Specifically, I now know how to construct and present bar graphs using the ggplot() function under the ggplot2 package, using methods such as filling the bar colors, labeling, and titling said graph.
+
+The techniques I have reused from Module 1 in this assignment are the extensive use of piping, the use of markdown bullet-points, and italicizing text. I have also embedded both the URL and link to the csv file and Google forms respectively.
+
+In future modules, I wish to explore more techniques to analyze data in R. Specifically, more ways to manipulate and explore data that we've obtained or collected. This is such that we can better apply our theoretical knowledge of statistics and be better able to present it in a more concise fashion. It would also be cool if we learned how to construct, use, and know the applications of 3D graphs.
+ 
+

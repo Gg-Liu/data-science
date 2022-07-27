@@ -1,0 +1,63 @@
+---
+title: "index.Rmd"
+subtitle: "STATS 220 Semester One 2022"
+author: "George Liu"
+date: "20/03/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{css}
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap');
+h1 {color: #62a370; font-weight: bolder
+}
+body {padding: 12px; font-family: 'Josefin Sans', sans-serif;
+
+}
+
+```
+
+## GitHub repository information
+
+[My GitHub.](https://github.com/Gg-Liu/stats220)
+In this github repository will be my work/study for the stats 220 course at University of Auckland, and maybe some messing around.
+
+## Animated GIF creation
+
+```{r}
+
+#Getting the images
+library(magick)
+alpaca <- image_read("https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/09/04/16/alpaca.jpg?quality=75&width=1200&auto=webp") %>%
+  image_scale(600) %>% image_crop("450x450+50")
+
+alpaca1 <- alpaca
+alpaca2 <- image_rotate(alpaca, 90)
+alpaca3 <- image_rotate(alpaca, 180)
+alpaca4 <- image_rotate(alpaca, 270)
+
+#Animating
+
+alpacas <- c(alpaca1, alpaca2, alpaca3, alpaca4) %>%
+  image_annotate(text = "spinnin' alpaca", 
+                 size = 50,
+                 gravity = "southwest", 
+                 font = "comic sans") %>%
+  image_animate(fps = 10)
+
+#testing
+
+alpacas
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Learning reflection
+
+In this module, I have learned how to create and write Markdown. Markdown is a fairly simple language in which a file written with Markdown knits into an HTML(HyperText Markup Language) file. There is the syntax for headers, bullet points, bold and italicized text, and options to implement code snippets from other languages. 
+
+I believe I have just begun on my data technologies journey. I hope in the near future to learn to be able to present my statistical findings effectively and also further develop my GitHub repository/s. Specifically, I wish to explore more of what GitHub has to offer, and explore the language of R furthermore.

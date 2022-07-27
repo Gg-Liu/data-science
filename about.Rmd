@@ -2,6 +2,9 @@
 title: "My Website"
 ---
 
-Hello!
+Hi! My name is Jonathon..., and that may be a lie. 
 
-This is a website for my portfolio. I will be adding more projects here soon, so don't forget to check it out at a later date!
+My actual name is George, and I am an aspiring data scientist, currently studying a Bachelor of Science in data science.
+
+My passion and day-to-day habits lie in crunching and interpreting numbers. Realising that these attributes sound like those of a data scientist, I began my exploration and research in this field (soon realising data science was more than just number crunching).
+
